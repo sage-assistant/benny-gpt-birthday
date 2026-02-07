@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎂 Happy Birthday Benny GPT! 🎂</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@200;400;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #F59E0B;
+            --gold-bright: #FCD34D;
+            --gold-dark: #B45309;
+            --bg-dark: #0A0A0A;
+            --bg-surface: #141414;
+            --bg-elevated: #1F1F1F;
+            --text: #FAFAFA;
+            --text-muted: #9CA3AF;
+            --red: #EF4444;
+            --blue: #3B82F6;
+            --green: #22C55E;
+            --purple: #A855F7;
+            --gradient-fire: linear-gradient(135deg, #F59E0B 0%, #EF4444 50%, #F59E0B 100%);
+            --gradient-hero: linear-gradient(135deg, #F59E0B 0%, #EF4444 100%);
+            --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Confetti Canvas */
+        #confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* Grain texture overlay */
+        .grain::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: 10000;
+            pointer-events: none;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+
+        /* Hidden Easter Egg Trigger */
+        .konami-activated {
+            animation: rainbowBg 2s linear infinite;
+        }
+
+        @keyframes rainbowBg {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            background: 
+                radial-gradient(ellipse at 20% 30%, rgba(245, 158, 11, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 70%, rgba(239, 68, 68, 0.1) 0%, transparent 50%),
+                var(--bg-dark);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='1' fill='%23F59E0B' opacity='0.1'/%3E%3C/svg%3E");
+            pointer-events: none;
+        }
+
+        .crown {
+            font-size: 6rem;
+            animation: float 3s ease-in-out infinite;
+            cursor: pointer;
+            transition: transform 0.3s var(--ease-bounce);
+        }
+
+        .crown:hover {
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        .crown.clicked {
+            animation: spin 0.5s var(--ease-bounce);
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.3); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero h1 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: clamp(3rem, 12vw, 8rem);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 1;
+            margin: 1rem 0;
+            background: var(--gradient-hero);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            opacity: 0;
+            transform: translateY(40px);
+            animation: heroReveal 1s var(--ease-out) 0.3s forwards;
+        }
+
+        @keyframes heroReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .subtitle {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: clamp(1.2rem, 4vw, 2rem);
+            font-weight: 400;
+            color: var(--text-muted);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: heroReveal 1s var(--ease-out) 0.5s forwards;
+        }
+
+        .subtitle span {
+            color: var(--gold);
+        }
+
+        .birthday-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--bg-elevated);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            padding: 0.75rem 1.5rem;
+            border-radius: 100px;
+            margin-top: 2rem;
+            font-weight: 500;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: heroReveal 1s var(--ease-out) 0.7s forwards;
+            cursor: pointer;
+            transition: all 0.3s var(--ease-out);
+        }
+
+        .birthday-badge:hover {
+            background: var(--gold);
+            color: var(--bg-dark);
+            transform: scale(1.05);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            opacity: 0;
+            animation: heroReveal 1s var(--ease-out) 1s forwards, bounce 2s ease-in-out 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        .scroll-indicator span {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+        }
+
+        .scroll-arrow {
+            width: 24px;
+            height: 24px;
+            border-right: 2px solid var(--gold);
+            border-bottom: 2px solid var(--gold);
+            transform: rotate(45deg);
+        }
+
+        /* Sections Common */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: clamp(2rem, 6vw, 4rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        /* Who is Benny Section */
+        .who-is-benny {
+            background: var(--bg-surface);
+            max-width: 100%;
+            padding: 6rem 2rem;
+        }
+
+        .who-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .who-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        .benny-avatar {
+            width: 100%;
+            aspect-ratio: 1;
+            background: var(--gradient-hero);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10rem;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.5s var(--ease-out);
+        }
+
+        .benny-avatar:hover {
+            transform: scale(1.02) rotate(2deg);
+        }
+
+        .benny-avatar::after {
+            content: 'Click me!';
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            background: rgba(0,0,0,0.7);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .benny-avatar:hover::after {
+            opacity: 1;
+        }
+
+        .who-text h2 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .who-text h2 span {
+            background: var(--gradient-hero);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .who-text p {
+            font-size: 1.125rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .who-text p strong {
+            color: var(--text);
+        }
+
+        /* Titles Ticker */
+        .titles-section {
+            overflow: hidden;
+            background: var(--gold);
+            padding: 1.5rem 0;
+        }
+
+        .ticker {
+            display: flex;
+            animation: ticker 30s linear infinite;
+            white-space: nowrap;
+        }
+
+        .ticker:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .ticker-item {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--bg-dark);
+            padding: 0 3rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .ticker-item::before {
+            content: '⚡';
+        }
+
+        /* Powers Section - Bento Grid */
+        .powers-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(3, auto);
+            gap: 1rem;
+        }
+
+        @media (max-width: 900px) {
+            .powers-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 500px) {
+            .powers-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .power-card {
+            background: var(--bg-surface);
+            border-radius: 20px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s var(--ease-out);
+            border: 1px solid transparent;
+        }
+
+        .power-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--gold);
+            box-shadow: 0 20px 60px rgba(245, 158, 11, 0.15);
+        }
+
+        .power-card.featured {
+            grid-column: span 2;
+            grid-row: span 2;
+            background: var(--gradient-hero);
+        }
+
+        .power-card.featured .power-title,
+        .power-card.featured .power-desc {
+            color: var(--bg-dark);
+        }
+
+        .power-card.wide {
+            grid-column: span 2;
+        }
+
+        .power-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+            transition: transform 0.3s var(--ease-bounce);
+        }
+
+        .power-card:hover .power-icon {
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        .power-title {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .power-desc {
+            color: var(--text-muted);
+            font-size: 0.9375rem;
+        }
+
+        .power-card.featured .power-desc {
+            color: rgba(0,0,0,0.7);
+        }
+
+        /* Secret Counter */
+        .secret-counter {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            background: var(--bg-elevated);
+            border: 1px solid var(--gold);
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            font-size: 0.875rem;
+            z-index: 1000;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.3s var(--ease-out);
+        }
+
+        .secret-counter.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .secret-counter span {
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        /* Achievements Section */
+        .achievements {
+            background: var(--bg-surface);
+            max-width: 100%;
+            padding: 6rem 2rem;
+        }
+
+        .achievements-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .achievement-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .achievement {
+            background: var(--bg-elevated);
+            border-radius: 16px;
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s var(--ease-out);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .achievement::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--gold);
+            transform: scaleY(0);
+            transition: transform 0.3s var(--ease-out);
+        }
+
+        .achievement:hover {
+            transform: translateX(8px);
+            background: var(--bg-surface);
+        }
+
+        .achievement:hover::before {
+            transform: scaleY(1);
+        }
+
+        .achievement-icon {
+            font-size: 2.5rem;
+            flex-shrink: 0;
+        }
+
+        .achievement-text h3 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .achievement-text p {
+            color: var(--text-muted);
+            font-size: 0.9375rem;
+        }
+
+        .achievement-badge {
+            margin-left: auto;
+            background: var(--gold);
+            color: var(--bg-dark);
+            padding: 0.25rem 0.75rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Wisdom Section */
+        .wisdom-section {
+            text-align: center;
+        }
+
+        .wisdom-card {
+            background: var(--bg-surface);
+            border-radius: 24px;
+            padding: 4rem;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .wisdom-card::before {
+            content: '"';
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 12rem;
+            color: var(--gold);
+            opacity: 0.2;
+            position: absolute;
+            top: -2rem;
+            left: 2rem;
+            line-height: 1;
+        }
+
+        .wisdom-text {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 400;
+            line-height: 1.4;
+            margin-bottom: 2rem;
+        }
+
+        .wisdom-author {
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        .refresh-wisdom {
+            background: var(--bg-elevated);
+            border: 1px solid var(--gold);
+            color: var(--text);
+            padding: 0.75rem 1.5rem;
+            border-radius: 100px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.875rem;
+            transition: all 0.3s var(--ease-out);
+        }
+
+        .refresh-wisdom:hover {
+            background: var(--gold);
+            color: var(--bg-dark);
+        }
+
+        /* Fun Facts */
+        .facts-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 3rem;
+        }
+
+        .fact-bubble {
+            background: var(--bg-surface);
+            border: 1px solid var(--bg-elevated);
+            padding: 1rem 1.5rem;
+            border-radius: 100px;
+            cursor: pointer;
+            transition: all 0.3s var(--ease-out);
+            position: relative;
+        }
+
+        .fact-bubble:hover {
+            background: var(--gold);
+            color: var(--bg-dark);
+            transform: scale(1.05);
+        }
+
+        .fact-bubble.revealed {
+            background: var(--bg-elevated);
+            border-color: var(--gold);
+        }
+
+        /* Birthday Message */
+        .birthday-message {
+            background: var(--gradient-hero);
+            max-width: 100%;
+            padding: 8rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .birthday-message::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='2' fill='white' opacity='0.1'/%3E%3C/svg%3E");
+            animation: sparkle 20s linear infinite;
+        }
+
+        @keyframes sparkle {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100px); }
+        }
+
+        .birthday-message h2 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 800;
+            color: var(--bg-dark);
+            letter-spacing: -0.03em;
+            position: relative;
+            z-index: 1;
+        }
+
+        .birthday-message p {
+            font-size: 1.25rem;
+            color: rgba(0,0,0,0.7);
+            max-width: 600px;
+            margin: 1.5rem auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .birthday-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--bg-dark);
+            color: var(--text);
+            padding: 1rem 2rem;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 2rem;
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s var(--ease-out);
+        }
+
+        .birthday-cta:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        /* Easter Egg Modal */
+        .easter-egg-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10001;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .easter-egg-modal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .easter-egg-content {
+            background: var(--bg-surface);
+            padding: 3rem;
+            border-radius: 24px;
+            text-align: center;
+            max-width: 500px;
+            transform: scale(0.9);
+            transition: transform 0.3s var(--ease-bounce);
+        }
+
+        .easter-egg-modal.active .easter-egg-content {
+            transform: scale(1);
+        }
+
+        .easter-egg-content h3 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .easter-egg-content p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .close-modal {
+            background: var(--gold);
+            color: var(--bg-dark);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 100px;
+            cursor: pointer;
+            font-weight: 600;
+            font-family: inherit;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        footer a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+
+        /* Click effects */
+        .click-effect {
+            position: fixed;
+            pointer-events: none;
+            font-size: 2rem;
+            animation: clickPop 0.6s var(--ease-out) forwards;
+            z-index: 10000;
+        }
+
+        @keyframes clickPop {
+            0% {
+                opacity: 1;
+                transform: scale(0) translateY(0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.5) translateY(-30px);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(1) translateY(-60px);
+            }
+        }
+
+        /* Parallax elements */
+        .floating-emoji {
+            position: fixed;
+            font-size: 2rem;
+            pointer-events: none;
+            opacity: 0.3;
+            z-index: 0;
+            animation: floatAround 20s ease-in-out infinite;
+        }
+
+        @keyframes floatAround {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-50px) rotate(90deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+            75% { transform: translateY(-60px) rotate(270deg); }
+        }
+
+        /* Reveal animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s var(--ease-out);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal:nth-child(1) { transition-delay: 0ms; }
+        .reveal:nth-child(2) { transition-delay: 100ms; }
+        .reveal:nth-child(3) { transition-delay: 200ms; }
+        .reveal:nth-child(4) { transition-delay: 300ms; }
+        .reveal:nth-child(5) { transition-delay: 400ms; }
+        .reveal:nth-child(6) { transition-delay: 500ms; }
+
+        /* Interactive cursor */
+        .cursor-sparkle {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            pointer-events: none;
+            z-index: 10000;
+        }
+
+        /* Sound toggle */
+        .sound-toggle {
+            position: fixed;
+            bottom: 1rem;
+            right: 1rem;
+            background: var(--bg-elevated);
+            border: 1px solid var(--gold);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1000;
+            font-size: 1.25rem;
+            transition: all 0.3s var(--ease-out);
+        }
+
+        .sound-toggle:hover {
+            background: var(--gold);
+            transform: scale(1.1);
+        }
+
+        /* Hidden Benny GPT chatbot trigger */
+        .benny-gpt-trigger {
+            position: fixed;
+            bottom: 1rem;
+            left: 1rem;
+            background: var(--bg-elevated);
+            border: 1px solid var(--purple);
+            padding: 0.75rem 1rem;
+            border-radius: 100px;
+            cursor: pointer;
+            z-index: 1000;
+            font-size: 0.875rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s var(--ease-out);
+        }
+
+        .benny-gpt-trigger.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .benny-gpt-trigger:hover {
+            background: var(--purple);
+            color: white;
+        }
+    </style>
+</head>
+<body class="grain">
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- Secret Counter -->
+    <div class="secret-counter" id="secretCounter">
+        Easter Eggs Found: <span id="eggCount">0</span>/12
+    </div>
+
+    <!-- Floating Emojis (Parallax) -->
+    <div class="floating-emoji" style="top: 20%; left: 10%;">💪</div>
+    <div class="floating-emoji" style="top: 60%; left: 85%;">🏋️</div>
+    <div class="floating-emoji" style="top: 80%; left: 15%;">🥊</div>
+    <div class="floating-emoji" style="top: 30%; right: 10%;">🎯</div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="crown" id="crown" title="Click me!">👑</div>
+        <h1>BENNY GPT</h1>
+        <p class="subtitle">The man who <span>knows everything</span></p>
+        <div class="birthday-badge" id="birthdayBadge">
+            🎂 February 5th · The Legend Levels Up
+        </div>
+        <div class="scroll-indicator">
+            <span>Discover Greatness</span>
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- Who is Benny -->
+    <section class="who-is-benny">
+        <div class="who-content">
+            <div class="benny-avatar" id="bennyAvatar">
+                🦸‍♂️
+            </div>
+            <div class="who-text">
+                <h2 class="reveal">Not just a man.<br><span>A phenomenon.</span></h2>
+                <p class="reveal">Benedict San Juan isn't your average human. He's a <strong>Registered Massage Therapist</strong>, <strong>powerlifting coach</strong>, <strong>charity boxer</strong>, and according to those who know him best—a walking encyclopedia of knowledge.</p>
+                <p class="reveal">Based in Toronto's vibrant <strong>Little Portugal</strong> neighborhood, Benny spends his days healing bodies at <strong>Heal Space</strong>, coaching athletes to new personal records, and casually knowing the answer to literally any question you throw at him.</p>
+                <p class="reveal">That's why they call him <strong>Benny GPT</strong>. 🤖✨</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Titles Ticker -->
+    <div class="titles-section">
+        <div class="ticker">
+            <div class="ticker-item">Registered Massage Therapist</div>
+            <div class="ticker-item">Powerlifting Coach</div>
+            <div class="ticker-item">Westside Barbell Certified</div>
+            <div class="ticker-item">Charity Boxing Champion</div>
+            <div class="ticker-item">Acupuncture Provider</div>
+            <div class="ticker-item">Team Rubicon Volunteer</div>
+            <div class="ticker-item">Oxford College Instructor</div>
+            <div class="ticker-item">Regular Blood Donor</div>
+            <div class="ticker-item">Registered Massage Therapist</div>
+            <div class="ticker-item">Powerlifting Coach</div>
+            <div class="ticker-item">Westside Barbell Certified</div>
+            <div class="ticker-item">Charity Boxing Champion</div>
+            <div class="ticker-item">Acupuncture Provider</div>
+            <div class="ticker-item">Team Rubicon Volunteer</div>
+            <div class="ticker-item">Oxford College Instructor</div>
+            <div class="ticker-item">Regular Blood Donor</div>
+        </div>
+    </div>
+
+    <!-- Powers Section -->
+    <section class="powers-section">
+        <h2 class="section-title reveal">The Many Powers of Benny</h2>
+        <div class="powers-grid">
+            <div class="power-card featured reveal" id="powerHealing" data-sound="heal">
+                <span class="power-icon">🙌</span>
+                <h3 class="power-title">Master Healer</h3>
+                <p class="power-desc">RMT since 2016, trained at the legendary Sutherland-Chan. His hands have restored countless athletes, office workers, and humans in need. Dry needling certified. Your pain doesn't stand a chance.</p>
+            </div>
+            <div class="power-card reveal" id="powerStrength" data-sound="lift">
+                <span class="power-icon">🏋️</span>
+                <h3 class="power-title">Strength Sage</h3>
+                <p class="power-desc">Westside Barbell certified. He doesn't just lift—he teaches the art of getting strong.</p>
+            </div>
+            <div class="power-card reveal" id="powerFight">
+                <span class="power-icon">🥊</span>
+                <h3 class="power-title">Cancer Fighter</h3>
+                <p class="power-desc">Steps in the ring for Fight to End Cancer. Raises funds for Canadian Cancer Society.</p>
+            </div>
+            <div class="power-card wide reveal" id="powerKnowledge">
+                <span class="power-icon">🧠</span>
+                <h3 class="power-title">The GPT Factor</h3>
+                <p class="power-desc">Ask him anything. Literally anything. He probably knows. That's why he's Benny GPT—an infinite knowledge base wrapped in human form.</p>
+            </div>
+            <div class="power-card reveal" id="powerArcher">
+                <span class="power-icon">🎯</span>
+                <h3 class="power-title">Precision Archer</h3>
+                <p class="power-desc">Because why not master a medieval weapon too?</p>
+            </div>
+            <div class="power-card reveal" id="powerMoto">
+                <span class="power-icon">🏍️</span>
+                <h3 class="power-title">Moto Mechanic</h3>
+                <p class="power-desc">Fixes motorcycles. Gets his hands dirty. Understands machines like he understands muscles.</p>
+            </div>
+            <div class="power-card reveal" id="powerHeart">
+                <span class="power-icon">❤️</span>
+                <h3 class="power-title">Community Hero</h3>
+                <p class="power-desc">Regular blood donor. Team Rubicon disaster responder. Teaches the next generation at Oxford College. Gives back constantly.</p>
+            </div>
+            <div class="power-card reveal" id="powerMartial">
+                <span class="power-icon">🥋</span>
+                <h3 class="power-title">Martial Artist</h3>
+                <p class="power-desc">Studies the ancient ways. Mind. Body. Spirit. All in harmony.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements -->
+    <section class="achievements">
+        <div class="achievements-content">
+            <h2 class="section-title reveal">Achievement Unlocked 🏆</h2>
+            <div class="achievement-list">
+                <div class="achievement reveal" data-egg="true">
+                    <span class="achievement-icon">🎓</span>
+                    <div class="achievement-text">
+                        <h3>Sutherland-Chan Graduate</h3>
+                        <p>Completed the gold standard of massage therapy education in Toronto</p>
+                    </div>
+                    <span class="achievement-badge">2016</span>
+                </div>
+                <div class="achievement reveal" data-egg="true">
+                    <span class="achievement-icon">💪</span>
+                    <div class="achievement-text">
+                        <h3>Westside Barbell Certified</h3>
+                        <p>Special Strength & Conditioning certification from the legendary powerlifting gym</p>
+                    </div>
+                    <span class="achievement-badge">Elite</span>
+                </div>
+                <div class="achievement reveal" data-egg="true">
+                    <span class="achievement-icon">🥊</span>
+                    <div class="achievement-text">
+                        <h3>Fight to End Cancer Boxer</h3>
+                        <p>Stepped into the ring to knock out cancer and raise funds for research</p>
+                    </div>
+                    <span class="achievement-badge">Hero</span>
+                </div>
+                <div class="achievement reveal" data-egg="true">
+                    <span class="achievement-icon">🩸</span>
+                    <div class="achievement-text">
+                        <h3>Regular Blood Donor</h3>
+                        <p>Consistently saving lives, one donation at a time</p>
+                    </div>
+                    <span class="achievement-badge">Ongoing</span>
+                </div>
+                <div class="achievement reveal" data-egg="true">
+                    <span class="achievement-icon">🌍</span>
+                    <div class="achievement-text">
+                        <h3>Team Rubicon Volunteer</h3>
+                        <p>Disaster response volunteer—shows up when people need help most</p>
+                    </div>
+                    <span class="achievement-badge">Service</span>
+                </div>
+                <div class="achievement reveal" data-egg="true">
+                    <span class="achievement-icon">📚</span>
+                    <div class="achievement-text">
+                        <h3>Oxford College Instructor</h3>
+                        <p>Teaching the next generation of massage therapists</p>
+                    </div>
+                    <span class="achievement-badge">Mentor</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wisdom Section -->
+    <section class="wisdom-section">
+        <h2 class="section-title reveal">Words of Wisdom</h2>
+        <div class="wisdom-card reveal">
+            <p class="wisdom-text" id="wisdomText">Ask Benny GPT anything. The answer is probably stored in his infinite knowledge banks.</p>
+            <p class="wisdom-author">— What Everyone Says About Benny</p>
+            <button class="refresh-wisdom" id="refreshWisdom">🎲 Generate New Wisdom</button>
+        </div>
+        <div class="facts-container">
+            <div class="fact-bubble" data-fact="He can probably fix your bike AND your back">🔧 Hidden Talent #1</div>
+            <div class="fact-bubble" data-fact="Knows the answer before you finish the question">🧠 Hidden Talent #2</div>
+            <div class="fact-bubble" data-fact="Makes pain disappear like magic">✨ Hidden Talent #3</div>
+            <div class="fact-bubble" data-fact="Could survive any apocalypse scenario">🏕️ Hidden Talent #4</div>
+            <div class="fact-bubble" data-fact="Probably has a black belt in something">🥋 Hidden Talent #5</div>
+        </div>
+    </section>
+
+    <!-- Birthday Message -->
+    <section class="birthday-message">
+        <h2>Happy Birthday, Legend! 🎉</h2>
+        <p>Here's to another year of healing hands, heavy lifts, knockout punches for charity, and knowing absolutely everything about everything.</p>
+        <p>The world is better because you're in it, Benny.</p>
+        <a href="https://www.healspace.ca/" target="_blank" class="birthday-cta">
+            Book a Session with the Legend →
+        </a>
+    </section>
+
+    <!-- Easter Egg Modal -->
+    <div class="easter-egg-modal" id="easterEggModal">
+        <div class="easter-egg-content">
+            <h3 id="eggTitle">🎉 Easter Egg Found!</h3>
+            <p id="eggMessage">You discovered a secret!</p>
+            <button class="close-modal" id="closeModal">Nice!</button>
+        </div>
+    </div>
+
+    <!-- Sound Toggle -->
+    <div class="sound-toggle" id="soundToggle" title="Toggle Sound Effects">
+        🔊
+    </div>
+
+    <!-- Benny GPT Trigger (Hidden until discovered) -->
+    <div class="benny-gpt-trigger" id="bennyGptTrigger">
+        💬 Ask Benny GPT
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>Made with ❤️ for Benny's Birthday · February 5, 2026</p>
+        <p>Find Benny: <a href="https://www.instagram.com/rmt.benny/" target="_blank">@rmt.benny</a> · <a href="https://www.healspace.ca/" target="_blank">Heal Space</a></p>
+    </footer>
+
+    <script>
+        // ============================================
+        // CONFETTI SYSTEM
+        // ============================================
+        const canvas = document.getElementById('confetti-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        const confettiColors = ['#F59E0B', '#EF4444', '#22C55E', '#3B82F6', '#A855F7', '#EC4899'];
+        let confettiParticles = [];
+
+        class Confetti {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.size = Math.random() * 10 + 5;
+                this.speedY = Math.random() * -15 - 5;
+                this.speedX = Math.random() * 10 - 5;
+                this.gravity = 0.5;
+                this.rotation = Math.random() * 360;
+                this.rotationSpeed = Math.random() * 10 - 5;
+                this.color = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+                this.opacity = 1;
+            }
+
+            update() {
+                this.speedY += this.gravity;
+                this.x += this.speedX;
+                this.y += this.speedY;
+                this.rotation += this.rotationSpeed;
+                this.opacity -= 0.01;
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.rotation * Math.PI / 180);
+                ctx.fillStyle = this.color;
+                ctx.globalAlpha = this.opacity;
+                ctx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size);
+                ctx.restore();
+            }
+        }
+
+        function animateConfetti() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            confettiParticles = confettiParticles.filter(p => p.opacity > 0);
+            confettiParticles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateConfetti);
+        }
+
+        function burstConfetti(x, y, count = 30) {
+            for (let i = 0; i < count; i++) {
+                confettiParticles.push(new Confetti(x, y));
+            }
+        }
+
+        animateConfetti();
+
+        // Initial confetti burst
+        setTimeout(() => {
+            burstConfetti(window.innerWidth / 2, window.innerHeight / 2, 100);
+        }, 500);
+
+        // ============================================
+        // EASTER EGG SYSTEM
+        // ============================================
+        let eggsFound = 0;
+        const totalEggs = 12;
+        const foundEggs = new Set();
+
+        function discoverEgg(eggId, title, message) {
+            if (foundEggs.has(eggId)) return;
+            foundEggs.add(eggId);
+            eggsFound++;
+            
+            document.getElementById('eggCount').textContent = eggsFound;
+            document.getElementById('secretCounter').classList.add('visible');
+            
+            document.getElementById('eggTitle').textContent = title;
+            document.getElementById('eggMessage').textContent = message;
+            document.getElementById('easterEggModal').classList.add('active');
+            
+            burstConfetti(window.innerWidth / 2, window.innerHeight / 2, 50);
+            
+            if (eggsFound >= 5) {
+                document.getElementById('bennyGptTrigger').classList.add('visible');
+            }
+            
+            if (eggsFound >= totalEggs) {
+                document.body.classList.add('konami-activated');
+                setTimeout(() => document.body.classList.remove('konami-activated'), 5000);
+            }
+        }
+
+        document.getElementById('closeModal').addEventListener('click', () => {
+            document.getElementById('easterEggModal').classList.remove('active');
+        });
+
+        // ============================================
+        // CROWN EASTER EGG
+        // ============================================
+        let crownClicks = 0;
+        document.getElementById('crown').addEventListener('click', (e) => {
+            crownClicks++;
+            e.target.classList.add('clicked');
+            setTimeout(() => e.target.classList.remove('clicked'), 500);
+            burstConfetti(e.clientX, e.clientY, 20);
+            
+            if (crownClicks >= 5) {
+                discoverEgg('crown', '👑 Royal Discovery!', 'You clicked the crown 5 times! Benny truly is royalty.');
+                crownClicks = 0;
+            }
+        });
+
+        // ============================================
+        // BIRTHDAY BADGE EASTER EGG
+        // ============================================
+        document.getElementById('birthdayBadge').addEventListener('click', (e) => {
+            burstConfetti(e.clientX, e.clientY, 50);
+            discoverEgg('birthday', '🎂 Birthday Spirit!', 'You celebrated! The birthday energy is strong with you.');
+        });
+
+        // ============================================
+        // AVATAR EASTER EGG
+        // ============================================
+        let avatarClicks = 0;
+        const avatarEmojis = ['🦸‍♂️', '💪', '🧠', '🥊', '🏋️', '🎯', '❤️', '👑'];
+        document.getElementById('bennyAvatar').addEventListener('click', (e) => {
+            avatarClicks++;
+            const emoji = avatarEmojis[avatarClicks % avatarEmojis.length];
+            e.target.textContent = emoji;
+            burstConfetti(e.clientX, e.clientY, 15);
+            
+            if (avatarClicks >= 8) {
+                discoverEgg('avatar', '🦸‍♂️ The Many Faces of Benny!', 'You discovered all of Benny\'s personas! He truly contains multitudes.');
+                avatarClicks = 0;
+            }
+        });
+
+        // ============================================
+        // POWER CARD INTERACTIONS
+        // ============================================
+        document.querySelectorAll('.power-card').forEach(card => {
+            card.addEventListener('click', (e) => {
+                burstConfetti(e.clientX, e.clientY, 20);
+                
+                const id = card.id;
+                if (id === 'powerKnowledge') {
+                    discoverEgg('gpt', '🧠 GPT Mode Activated!', 'You tapped into Benny\'s infinite knowledge. Ask him anything... he knows.');
+                } else if (id === 'powerFight') {
+                    discoverEgg('fighter', '🥊 Knockout!', 'Benny fights cancer in the ring AND raises money for research. A true champion.');
+                }
+            });
+        });
+
+        // ============================================
+        // WISDOM GENERATOR
+        // ============================================
+        const wisdoms = [
+            { text: "The body keeps the score. Benny helps it win.", author: "Heal Space Philosophy" },
+            { text: "Strength isn't just about muscles. It's about showing up.", author: "Benny's Coaching Mantra" },
+            { text: "Every question has an answer. Benny has most of them.", author: "Why He's Called GPT" },
+            { text: "Pain is information. A good RMT translates it.", author: "Massage Wisdom" },
+            { text: "The bar doesn't lie. Neither does hard work.", author: "Westside Barbell Philosophy" },
+            { text: "Help others. The rest figures itself out.", author: "Team Rubicon Values" },
+            { text: "Knowledge is meant to be shared.", author: "Why Benny Teaches" },
+            { text: "Hit it hard. But hit cancer harder.", author: "Fight to End Cancer" },
+        ];
+
+        let wisdomIndex = 0;
+        document.getElementById('refreshWisdom').addEventListener('click', () => {
+            wisdomIndex = (wisdomIndex + 1) % wisdoms.length;
+            const wisdom = wisdoms[wisdomIndex];
+            document.getElementById('wisdomText').textContent = wisdom.text;
+            document.querySelector('.wisdom-author').textContent = `— ${wisdom.author}`;
+            
+            if (wisdomIndex === wisdoms.length - 1) {
+                discoverEgg('wisdom', '📜 Wisdom Seeker!', 'You read through all of Benny\'s wisdom! Enlightenment achieved.');
+            }
+        });
+
+        // ============================================
+        // FACT BUBBLES
+        // ============================================
+        document.querySelectorAll('.fact-bubble').forEach(bubble => {
+            bubble.addEventListener('click', (e) => {
+                const fact = bubble.dataset.fact;
+                bubble.textContent = fact;
+                bubble.classList.add('revealed');
+                burstConfetti(e.clientX, e.clientY, 15);
+            });
+        });
+
+        // After revealing all facts
+        let factsRevealed = 0;
+        document.querySelectorAll('.fact-bubble').forEach(bubble => {
+            bubble.addEventListener('click', () => {
+                if (!bubble.classList.contains('counted')) {
+                    bubble.classList.add('counted');
+                    factsRevealed++;
+                    if (factsRevealed >= 5) {
+                        discoverEgg('facts', '🔮 Fact Finder!', 'You revealed all of Benny\'s hidden talents! There are probably more...');
+                    }
+                }
+            });
+        });
+
+        // ============================================
+        // KONAMI CODE EASTER EGG
+        // ============================================
+        const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+        let konamiIndex = 0;
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === konamiCode[konamiIndex]) {
+                konamiIndex++;
+                if (konamiIndex === konamiCode.length) {
+                    discoverEgg('konami', '🎮 KONAMI CODE!', 'You found the ultimate easter egg! +30 lives for Benny!');
+                    konamiIndex = 0;
+                    burstConfetti(window.innerWidth / 2, window.innerHeight / 2, 200);
+                }
+            } else {
+                konamiIndex = 0;
+            }
+        });
+
+        // ============================================
+        // SCROLL ANIMATIONS
+        // ============================================
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealOnScroll = () => {
+            revealElements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                const isVisible = rect.top < window.innerHeight * 0.85;
+                if (isVisible) {
+                    el.classList.add('visible');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll(); // Initial check
+
+        // ============================================
+        // SECRET TYPING EASTER EGG
+        // ============================================
+        let typedText = '';
+        document.addEventListener('keypress', (e) => {
+            typedText += e.key.toLowerCase();
+            if (typedText.includes('benny')) {
+                discoverEgg('name', '✨ You Typed His Name!', 'Saying "Benny" summons good vibes and infinite knowledge.');
+                typedText = '';
+            }
+            if (typedText.includes('gpt')) {
+                discoverEgg('gpt-type', '🤖 GPT Activated!', 'Benny GPT is now online. He probably already knew you\'d type that.');
+                typedText = '';
+            }
+            if (typedText.length > 20) {
+                typedText = typedText.slice(-10);
+            }
+        });
+
+        // ============================================
+        // ACHIEVEMENT CLICKS
+        // ============================================
+        document.querySelectorAll('.achievement').forEach((achievement, index) => {
+            achievement.addEventListener('click', (e) => {
+                burstConfetti(e.clientX, e.clientY, 25);
+                if (index === 2) { // Fight to End Cancer
+                    discoverEgg('cancer-fighter', '🥊 Ring Warrior!', 'Benny literally fights cancer. In a boxing ring. For charity. What a legend.');
+                }
+                if (index === 4) { // Team Rubicon
+                    discoverEgg('rubicon', '🌍 Disaster Hero!', 'When disaster strikes, Benny shows up. Team Rubicon responder. Real-life superhero.');
+                }
+            });
+        });
+
+        // ============================================
+        // BENNY GPT CHATBOT (FAKE BUT FUN)
+        // ============================================
+        const bennyResponses = [
+            "I knew you were going to ask that.",
+            "The answer is 42. Also, stretch more.",
+            "Have you tried foam rolling?",
+            "That's a great question. The solution involves proper form.",
+            "I learned that from a book about motorcycle repair.",
+            "Let me think... actually I already know.",
+            "The body tells you everything. You just have to listen.",
+            "My Westside Barbell training prepared me for exactly this.",
+        ];
+
+        document.getElementById('bennyGptTrigger').addEventListener('click', () => {
+            const response = bennyResponses[Math.floor(Math.random() * bennyResponses.length)];
+            alert(`🧠 Benny GPT says:\n\n"${response}"`);
+            discoverEgg('chatbot', '💬 Benny GPT Consulted!', 'You asked Benny GPT for wisdom. He delivered (as always).');
+        });
+
+        // ============================================
+        // CLICK EFFECT ANYWHERE
+        // ============================================
+        const clickEmojis = ['⭐', '✨', '💫', '🌟', '❤️', '💪', '🎉', '🔥'];
+        document.addEventListener('click', (e) => {
+            const effect = document.createElement('div');
+            effect.className = 'click-effect';
+            effect.textContent = clickEmojis[Math.floor(Math.random() * clickEmojis.length)];
+            effect.style.left = e.clientX + 'px';
+            effect.style.top = e.clientY + 'px';
+            document.body.appendChild(effect);
+            setTimeout(() => effect.remove(), 600);
+        });
+
+        // ============================================
+        // SOUND TOGGLE (VISUAL ONLY FOR NOW)
+        // ============================================
+        let soundEnabled = false;
+        document.getElementById('soundToggle').addEventListener('click', () => {
+            soundEnabled = !soundEnabled;
+            document.getElementById('soundToggle').textContent = soundEnabled ? '🔊' : '🔇';
+        });
+
+        // ============================================
+        // TICKER PAUSE ON HOVER
+        // ============================================
+        const ticker = document.querySelector('.ticker');
+        ticker.addEventListener('mouseenter', () => {
+            discoverEgg('ticker', '📜 Title Spotter!', 'You noticed Benny\'s endless list of titles. There might be more we don\'t even know about.');
+        });
+
+        // ============================================
+        // FINAL SUPER SECRET
+        // ============================================
+        let scrollCount = 0;
+        window.addEventListener('scroll', () => {
+            scrollCount++;
+            if (scrollCount > 50 && !foundEggs.has('scroller')) {
+                discoverEgg('scroller', '📜 Dedicated Reader!', 'You\'ve scrolled through Benny\'s story with dedication. That energy is appreciated!');
+            }
+        });
+
+        // Console Easter Egg
+        console.log('%c🎂 Happy Birthday Benny! 🎂', 'font-size: 24px; color: #F59E0B; font-weight: bold;');
+        console.log('%cYou found the console! Type discoverEgg("console", "🖥️ Developer Discovered!", "Benny would approve of your curiosity.") for a bonus!', 'color: #888;');
+        window.discoverEgg = discoverEgg;
+
+    </script>
+</body>
+</html>
